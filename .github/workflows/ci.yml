@@ -25,5 +25,6 @@ jobs:
           mongodb-port: 27017
 
       - run: |
+          cd backend
           npm ci
           npm test
