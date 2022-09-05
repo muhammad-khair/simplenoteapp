@@ -36,7 +36,7 @@ describe("api/note", () => {
         });
 
         it("should not get single note by invalid id", (done) => {
-            const invalidId = -1;
+            const invalidId = 0;
             chai.request(app)
                 .get(`/api/note/${invalidId}`)
                 .end((err, res) => {
@@ -58,7 +58,7 @@ describe("api/note", () => {
     });
     
     describe("POST", () => {
-        let id = -1;
+        let id = 0;
         it("should accept a new note with correct format", (done) => {
             let note = {
                 description: "Test code",
