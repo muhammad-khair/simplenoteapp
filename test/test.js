@@ -49,7 +49,7 @@ describe("api/note", () => {
         });
 
         after(() => {
-            Note.findByIdAndDelete(`${id}`, (err) => {
+            Note.findByIdAndDelete(id, (err) => {
                 if (err) {
                     console.log(err);
                 }
@@ -104,7 +104,7 @@ describe("api/note", () => {
         });
 
         after(() => {
-            Note.findByIdAndDelete(`${id}`, (err) => {
+            Note.findByIdAndDelete(id, (err) => {
                 if (err) {
                     console.log(err);
                 }
@@ -170,7 +170,7 @@ describe("api/note", () => {
         });
 
         after(() => {
-            Note.findByIdAndDelete(`${id}`, (err) => {
+            Note.findByIdAndDelete(id, (err) => {
                 if (err) {
                     console.log(err);
                 }
@@ -205,7 +205,7 @@ describe("api/note", () => {
         });
 
         after(() => {
-            Note.findByIdAndDelete(`${id}`, (err) => {
+            Note.findByIdAndDelete(id, (err) => {
                 if (err) {
                     console.log(err);
                 }
