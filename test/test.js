@@ -38,14 +38,14 @@ describe("api/note", () => {
                 });
         });
 
-        after(() => {
-            console.log(`Deleting id ${getId} from test`);
-            Note.findByIdAndDelete(getId, (err) => {
-                if (err) {
-                    console.log(err);
-                }
-            });
-        });
+        // after(() => {
+        //     console.log(`Deleting id ${getId} from test`);
+        //     Note.findByIdAndDelete(getId, (err) => {
+        //         if (err) {
+        //             console.log(err);
+        //         }
+        //     });
+        // });
     });
 
     describe("GET api/note/:invalidId", () => {
@@ -64,7 +64,7 @@ describe("api/note", () => {
     });
     
     describe("POST api/note with valid body", () => {
-        let postId = 0;
+        let postId = 123456789;
         it("should accept a new note with correct format", (done) => {
             let note = {
                 description: "Test code",
@@ -82,14 +82,14 @@ describe("api/note", () => {
                 });
         });
 
-        after(() => {
-            console.log(`Deleting id ${postId} from test`);
-            Note.findByIdAndDelete(postId, (err) => {
-                if (err) {
-                    console.log(err);
-                }
-            });
-        });
+        // after(() => {
+        //     console.log(`Deleting id ${postId} from test`);
+        //     Note.findByIdAndDelete(postId, (err) => {
+        //         if (err) {
+        //             console.log(err);
+        //         }
+        //     });
+        // });
     });
 
     describe("POST api/note with invalid body", () => {
@@ -131,14 +131,14 @@ describe("api/note", () => {
                 });
         });
 
-        after(() => {
-            console.log(`Deleting id ${putId} from test`);
-            Note.findByIdAndDelete(putId, (err) => {
-                if (err) {
-                    console.log(err);
-                }
-            });
-        });
+        // after(() => {
+        //     console.log(`Deleting id ${putId} from test`);
+        //     Note.findByIdAndDelete(putId, (err) => {
+        //         if (err) {
+        //             console.log(err);
+        //         }
+        //     });
+        // });
     });  
 
     describe("PUT /api/note/:id with invalid body", () => {
@@ -162,14 +162,14 @@ describe("api/note", () => {
                 });
         });
 
-        after(() => {
-            console.log(`Deleting id ${putId} from test`);
-            Note.findByIdAndDelete(putId, (err) => {
-                if (err) {
-                    console.log(err);
-                }
-            });
-        });
+        // after(() => {
+        //     console.log(`Deleting id ${putId} from test`);
+        //     Note.findByIdAndDelete(putId, (err) => {
+        //         if (err) {
+        //             console.log(err);
+        //         }
+        //     });
+        // });
     });    
 
     describe("DELETE /api/note/:validId", () => {
@@ -187,14 +187,14 @@ describe("api/note", () => {
                 });
         });
 
-        after(() => {
-            console.log(`Deleting id ${deleteId} from test`);
-            Note.findByIdAndDelete(deleteId, (err) => {
-                if (err) {
-                    console.log(err);
-                }
-            });
-        });
+        // after(() => {
+        //     console.log(`Deleting id ${deleteId} from test`);
+        //     Note.findByIdAndDelete(deleteId, (err) => {
+        //         if (err) {
+        //             console.log(err);
+        //         }
+        //     });
+        // });
     });
 
     describe("DELETE /api/note/:invalidId", () => {
