@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 chai.should();
 
 describe("api/note", () => {
-    describe("GET", () => {
+    describe("GET api/note", () => {
         it("should get all notes", (done) => {
             chai.request(app)
                 .get("/api/note")
@@ -20,10 +20,13 @@ describe("api/note", () => {
                     done();
                 });
         });
+    });
 
+    describe("GET api/note/:validId", () => {
         let note = createNewNote({ description: "Test code" });
-        note.save();
         let getId = note._id;
+        note.save();
+
         it("should be able to view specific note", (done) => {
             chai.request(app)
                 .get(`/api/note/${getId}`)
@@ -31,19 +34,6 @@ describe("api/note", () => {
                     res.should.have.status(200);
                     res.body.should.be.a('object');
                     res.body.should.have.property('data');
-                    done();
-                });
-        });
-
-        it("should not get single note by invalid id", (done) => {
-            const invalidId = 0;
-            chai.request(app)
-                .get(`/api/note/${invalidId}`)
-                .end((err, res) => {
-                    res.should.have.status(404);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('message')
-                        .eql('Note does not exist.');
                     done();
                 });
         });
@@ -57,8 +47,23 @@ describe("api/note", () => {
             });
         });
     });
+
+    describe("GET api/note/:invalidId", () => {
+        it("should not get single note by invalid id", (done) => {
+            const invalidId = 123456789;
+            chai.request(app)
+                .get(`/api/note/${invalidId}`)
+                .end((err, res) => {
+                    res.should.have.status(404);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('message')
+                        .eql('Note does not exist.');
+                    done();
+                });
+        });
+    });
     
-    describe("POST", () => {
+    describe("POST api/note with valid body", () => {
         let postId = 0;
         it("should accept a new note with correct format", (done) => {
             let note = {
@@ -76,17 +81,18 @@ describe("api/note", () => {
                     done();
                 });
         });
-        // it("should be able to view new note", (done) => {
-        //     chai.request(app)
-        //         .get(`/api/note/${postId}`)
-        //         .end((err, res) => {
-        //             res.should.have.status(200);
-        //             res.body.should.be.a('object');
-        //             res.body.should.have.property('data');
-        //             done();
-        //         });
-        // });
 
+        after(() => {
+            console.log(`Deleting id ${postId} from test`);
+            Note.findByIdAndDelete(postId, (err) => {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        });
+    });
+
+    describe("POST api/note with invalid body", () => {
         it("should not add a new note for incorrect format", (done) => {
             let note = {
                 description: "Test code",
@@ -103,18 +109,9 @@ describe("api/note", () => {
                     done();
                 });
         });
-
-        after(() => {
-            console.log(`Deleting id ${postId} from test`);
-            Note.findByIdAndDelete(postId, (err) => {
-                if (err) {
-                    console.log(err);
-                }
-            });
-        });
     });
 
-    describe("PUT", () => {
+    describe("PUT /api/note/:id with valid body", () => {
         let oldDesc = "Test code";
         let newDesc = "Delete code";
         let note = createNewNote({ description: oldDesc });
@@ -133,17 +130,22 @@ describe("api/note", () => {
                     done();
                 });
         });
-        it("should be able to view note with changes", (done) => {
-            chai.request(app)
-                .get(`/api/note/${putId}`)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('data');
-                    res.body.data.description.should.be.a('string').eql(newDesc);
-                    done();
-                });
+
+        after(() => {
+            console.log(`Deleting id ${putId} from test`);
+            Note.findByIdAndDelete(putId, (err) => {
+                if (err) {
+                    console.log(err);
+                }
+            });
         });
+    });  
+
+    describe("PUT /api/note/:id with invalid body", () => {
+        let oldDesc = "Test code";
+        let note = createNewNote({ description: oldDesc });
+        note.save();
+        let putId = note._id;
         it("should not be able to update note with incorrect format", (done) => {
             let note = {
                 priority: 123,
@@ -159,17 +161,6 @@ describe("api/note", () => {
                     done();
                 });
         });
-        it("should be able to view note as of previous state", (done) => {
-            chai.request(app)
-                .get(`/api/note/${putId}`)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('data');
-                    res.body.data.description.should.be.a('string').eql(newDesc);
-                    done();
-                });
-        });
 
         after(() => {
             console.log(`Deleting id ${putId} from test`);
@@ -181,7 +172,7 @@ describe("api/note", () => {
         });
     });    
 
-    describe("DELETE", () => {
+    describe("DELETE /api/note/:validId", () => {
         let note = createNewNote({ description: "to delete" });
         note.save();
         let deleteId = note._id;
@@ -194,7 +185,20 @@ describe("api/note", () => {
                     res.body.should.have.property('note_id').eql(`${deleteId}`);
                     done();
                 });
-        });        
+        });
+
+        after(() => {
+            console.log(`Deleting id ${deleteId} from test`);
+            Note.findByIdAndDelete(deleteId, (err) => {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        });
+    });
+
+    describe("DELETE /api/note/:invalidId", () => {
+        let deleteId = 123456789;
         it("should not be able to view deleted note by invalid id", (done) => {
             chai.request(app)
                 .get(`/api/note/${deleteId}`)
@@ -205,15 +209,6 @@ describe("api/note", () => {
                         .eql('Note does not exist.');
                     done();
                 });
-        });
-
-        after(() => {
-            console.log(`Deleting id ${deleteId} from test`);
-            Note.findByIdAndDelete(deleteId, (err) => {
-                if (err) {
-                    console.log(err);
-                }
-            });
         });
     });
 });
