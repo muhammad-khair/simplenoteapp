@@ -59,7 +59,9 @@ describe("api/note", () => {
     });
     
     describe("POST", () => {
-        var postId = 0;
+        var postNote = {
+            id: 0
+        };
         it("should accept a new note with correct format", (done) => {
             let note = {
                 description: "Test code",
@@ -72,13 +74,13 @@ describe("api/note", () => {
                     res.body.should.be.a('object');
                     res.body.should.have.property('data');
                     res.body.data.should.be.a('object');
-                    postId = res.body.data._id;
+                    postNote.id = res.body.data._id;
                     done();
                 });
         });
         it("should be able to view new note", (done) => {
             chai.request(app)
-                .get(`/api/note/${postId}`)
+                .get(`/api/note/${postNote.id}`)
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.a('object');
@@ -105,8 +107,8 @@ describe("api/note", () => {
         });
 
         after(() => {
-            console.log(`Deleting id ${postId} from test`);
-            Note.findByIdAndDelete(postId, (err) => {
+            console.log(`Deleting id ${postNote.id} from test`);
+            Note.findByIdAndDelete(postNote.id, (err) => {
                 if (err) {
                     console.log(err);
                 }
