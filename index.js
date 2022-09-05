@@ -9,7 +9,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost:27017/simplenoteapp", { useNewUrlParser: true });
+mongoose.connect(
+    "mongodb://localhost:27017/simplenoteapp",
+    { useNewUrlParser: true }
+);
 var db = mongoose.connection;
 console.log(
     (!db) 

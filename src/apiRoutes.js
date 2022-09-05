@@ -9,8 +9,7 @@ router.get("/", (req, res) => {
 
 router.route("/note")
     .get(noteController.index)
-    .post(validateNewNoteObject(), noteController.new)
-    .purge(noteController.clear);
+    .post(validateNewNoteObject(), noteController.new);
 
 router.route("/note/:note_id")
     .get(noteController.view)

@@ -1,3 +1,5 @@
+let Note = require("./noteModel");
+
 module.exports.createNewNote = function (dataSource) {
     var note = new Note();
     note.description = dataSource.description.trim();
@@ -19,7 +21,7 @@ module.exports.createNewNote = function (dataSource) {
 };
 
 module.exports.updateNote = function (note, dataSource) {
-    note.description = (dataSource.description.trim())
+    note.description = (dataSource.description && dataSource.description.trim())
         ? dataSource.description.trim()
         : note.description;
     if (dataSource.tags) {
