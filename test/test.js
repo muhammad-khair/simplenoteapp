@@ -2,12 +2,12 @@ const { createNewNote } = require("../src/noteService");
 let app = require("../index");
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let Note = require("../src/noteModel");
 
 chai.use(chaiHttp);
 chai.should();
 
 describe("api/note", () => {
+
     describe("GET api/note", () => {
         it("should get all notes", (done) => {
             chai.request(app)
@@ -37,15 +37,6 @@ describe("api/note", () => {
                     done();
                 });
         });
-
-        // after(() => {
-        //     console.log(`Deleting id ${getId} from test`);
-        //     Note.findByIdAndDelete(getId, (err) => {
-        //         if (err) {
-        //             console.log(err);
-        //         }
-        //     });
-        // });
     });
 
     describe("GET api/note/:invalidId", () => {
@@ -81,15 +72,6 @@ describe("api/note", () => {
                     done();
                 });
         });
-
-        // after(() => {
-        //     console.log(`Deleting id ${postId} from test`);
-        //     Note.findByIdAndDelete(postId, (err) => {
-        //         if (err) {
-        //             console.log(err);
-        //         }
-        //     });
-        // });
     });
 
     describe("POST api/note with invalid body", () => {
@@ -130,15 +112,6 @@ describe("api/note", () => {
                     done();
                 });
         });
-
-        // after(() => {
-        //     console.log(`Deleting id ${putId} from test`);
-        //     Note.findByIdAndDelete(putId, (err) => {
-        //         if (err) {
-        //             console.log(err);
-        //         }
-        //     });
-        // });
     });  
 
     describe("PUT /api/note/:id with invalid body", () => {
@@ -161,15 +134,6 @@ describe("api/note", () => {
                     done();
                 });
         });
-
-        // after(() => {
-        //     console.log(`Deleting id ${putId} from test`);
-        //     Note.findByIdAndDelete(putId, (err) => {
-        //         if (err) {
-        //             console.log(err);
-        //         }
-        //     });
-        // });
     });    
 
     describe("DELETE /api/note/:validId", () => {
@@ -186,15 +150,6 @@ describe("api/note", () => {
                     done();
                 });
         });
-
-        // after(() => {
-        //     console.log(`Deleting id ${deleteId} from test`);
-        //     Note.findByIdAndDelete(deleteId, (err) => {
-        //         if (err) {
-        //             console.log(err);
-        //         }
-        //     });
-        // });
     });
 
     describe("DELETE /api/note/:invalidId", () => {
