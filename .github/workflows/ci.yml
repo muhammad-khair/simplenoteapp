@@ -29,5 +29,5 @@ jobs:
           npm ci
           npm test
           cd ../frontend
-          npm ci
+          npm install
           npm test
