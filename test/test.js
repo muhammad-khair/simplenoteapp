@@ -59,9 +59,7 @@ describe("api/note", () => {
     });
     
     describe("POST", () => {
-        var postNote = {
-            id: 0
-        };
+        let postId = 0;
         it("should accept a new note with correct format", (done) => {
             let note = {
                 description: "Test code",
@@ -74,20 +72,20 @@ describe("api/note", () => {
                     res.body.should.be.a('object');
                     res.body.should.have.property('data');
                     res.body.data.should.be.a('object');
-                    postNote.id = res.body.data._id;
+                    postId = res.body.data._id;
                     done();
                 });
         });
-        it("should be able to view new note", (done) => {
-            chai.request(app)
-                .get(`/api/note/${postNote.id}`)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('data');
-                    done();
-                });
-        });
+        // it("should be able to view new note", (done) => {
+        //     chai.request(app)
+        //         .get(`/api/note/${postId}`)
+        //         .end((err, res) => {
+        //             res.should.have.status(200);
+        //             res.body.should.be.a('object');
+        //             res.body.should.have.property('data');
+        //             done();
+        //         });
+        // });
 
         it("should not add a new note for incorrect format", (done) => {
             let note = {
@@ -107,8 +105,8 @@ describe("api/note", () => {
         });
 
         after(() => {
-            console.log(`Deleting id ${postNote.id} from test`);
-            Note.findByIdAndDelete(postNote.id, (err) => {
+            console.log(`Deleting id ${postId} from test`);
+            Note.findByIdAndDelete(postId, (err) => {
                 if (err) {
                     console.log(err);
                 }
