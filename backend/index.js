@@ -1,5 +1,6 @@
 let apiRoutes = require("./src/apiRoutes");
 let bodyParser = require("body-parser");
+let cors = require('cors')
 let express = require("express");
 let mongoose = require("mongoose");
 
@@ -8,6 +9,7 @@ app.use(bodyParser.urlencoded({
     extended: true,
 }));
 app.use(bodyParser.json());
+app.use(cors());
 
 mongoose.connect(
     "mongodb://localhost:27017/simplenoteapp",

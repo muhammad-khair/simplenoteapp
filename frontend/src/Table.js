@@ -1,10 +1,9 @@
 import { DataPriority, DataTag, DataBoolean, DataDate } from "./TableTools";
 import { useTable } from "react-table";
 import axios from "axios";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 
-function Table() {
-  const [data, setData] = useState([]);
+function Table({ data, reloader }) {
 
 	const columns = useMemo(() => 
     [
@@ -44,15 +43,31 @@ function Table() {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } 
     = useTable({ columns, data });
 
-  useEffect(() => {
+
+  useEffect(() => reloader(), []);
+
+  const deleteNote = (event) => {
 		let dataUrl = "http://localhost:8080/api/note";
-		axios.get(dataUrl)
+    axios.delete(`${dataUrl}/${event.target.value}`)
 			.then((res) => {
-				setData(res.data.data);
+        alert("Note deleted!");
+        reloader();
 			});
-	}, []);
+  }
+
+  const editNote = (event) => {
+		let dataUrl = "http://localhost:8080/api/note";
+    let newNote = data.find(n => n._id === event.target.value);
+    axios.put(`${dataUrl}/${event.target.value}`, newNote)
+			.then((res) => {
+        alert("Note updated!");
+        reloader();
+			});
+  }
 
   return (
+    <div>
+    <h2>Current Notes</h2>
     <table {...getTableProps()}>
       <thead>
         {headerGroups.map(headerGroup => (
@@ -71,11 +86,14 @@ function Table() {
               {row.cells.map(cell => {
                 return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
               })}
+              <td><button type="submit" name="noteid" value={row.original._id} onClick={editNote}>Edit note</button></td>
+              <td><button type="submit" name="noteid" value={row.original._id} onClick={deleteNote}>Delete note</button></td>
             </tr>
           );
         })}
       </tbody>
     </table>
+    </div>
   );
 }
 
