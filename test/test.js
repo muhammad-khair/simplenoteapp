@@ -49,6 +49,7 @@ describe("api/note", () => {
         });
 
         after(() => {
+            console.log(`Deleting id ${id} from test`);
             Note.findByIdAndDelete(id, (err) => {
                 if (err) {
                     console.log(err);
@@ -104,6 +105,7 @@ describe("api/note", () => {
         });
 
         after(() => {
+            console.log(`Deleting id ${id} from test`);
             Note.findByIdAndDelete(id, (err) => {
                 if (err) {
                     console.log(err);
@@ -170,6 +172,7 @@ describe("api/note", () => {
         });
 
         after(() => {
+            console.log(`Deleting id ${id} from test`);
             Note.findByIdAndDelete(id, (err) => {
                 if (err) {
                     console.log(err);
@@ -205,6 +208,7 @@ describe("api/note", () => {
         });
 
         after(() => {
+            console.log(`Deleting id ${id} from test`);
             Note.findByIdAndDelete(id, (err) => {
                 if (err) {
                     console.log(err);
