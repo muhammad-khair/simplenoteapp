@@ -2,8 +2,10 @@ import './App.css';
 import axios from "axios";
 import React, { useState } from "react";
 import Table from "./Table";
-import NoteForm from "./NoteForm";
-import RandomQuote from "./RandomQuote";
+import NewNoteForm from "./NewNoteForm";
+import RandomTrivia from "./RandomTrivia";
+
+// TODO: add Bootstrap https://blog.logrocket.com/using-bootstrap-with-react-tutorial-with-examples/
 
 function App() {
   const [data, setData] = useState([]);
@@ -19,8 +21,8 @@ function App() {
 	return (
 		<div className="App">
 			<h1>Welcome to simplenoteapp!</h1>
-			<div><RandomQuote/></div>
-			<div><NoteForm reloader={loadData}/></div>
+			<div><RandomTrivia/></div>
+			<div><NewNoteForm reloader={loadData}/></div>
 			<div><Table data={data} reloader={loadData}/></div>
 		</div>
 	);

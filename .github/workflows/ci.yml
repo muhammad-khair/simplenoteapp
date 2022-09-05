@@ -28,3 +28,6 @@ jobs:
           cd backend
           npm ci
           npm test
+          cd ../frontend
+          npm ci
+          npm test

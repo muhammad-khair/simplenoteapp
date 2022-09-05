@@ -30,7 +30,7 @@ module.exports.updateNote = function (note, dataSource) {
         note.tags = []
         dataSource.tags.map((t) => String(t).trim()).forEach((t) => {
             if (t.length > 0) {
-                note.tags.push(tags);
+                note.tags.push(t);
             }
         });
     }
@@ -40,4 +40,7 @@ module.exports.updateNote = function (note, dataSource) {
     note.is_flagged = (dataSource.is_flagged)
         ? dataSource.is_flagged
         : note.is_flagged;
+    note.is_completed = (dataSource.is_completed)
+        ? dataSource.is_completed
+        : note.is_completed;
 };

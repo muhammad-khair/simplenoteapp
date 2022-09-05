@@ -1,9 +1,13 @@
 import { DataPriority, DataTag, DataBoolean, DataDate } from "./TableTools";
 import { useTable } from "react-table";
 import axios from "axios";
-import React, { useEffect, useMemo } from "react";
+import EditNoteForm from "./EditNoteForm";
+import React, { useEffect, useState, useMemo } from "react";
 
 function Table({ data, reloader }) {
+  const [isShowing, setIsShowing] = useState(false);
+  const [noteId, setNoteId] = useState(null);
+  const [note, setNote] = useState(null);
 
 	const columns = useMemo(() => 
     [
@@ -40,9 +44,7 @@ function Table({ data, reloader }) {
     []
   );
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } 
-    = useTable({ columns, data });
-
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data });
 
   useEffect(() => reloader(), []);
 
@@ -55,14 +57,16 @@ function Table({ data, reloader }) {
 			});
   }
 
-  const editNote = (event) => {
-		let dataUrl = "http://localhost:8080/api/note";
-    let newNote = data.find(n => n._id === event.target.value);
-    axios.put(`${dataUrl}/${event.target.value}`, newNote)
-			.then((res) => {
-        alert("Note updated!");
-        reloader();
-			});
+  const openPopUpEditor = (event) => {
+    let noteId = event.target.value;
+    let note = data.find(n => n._id === noteId);
+    setNoteId(noteId);
+    setNote(Object.assign({}, note));
+    setIsShowing(true);
+  }
+
+  const closePopUpEditor = (event) => {
+    setIsShowing(false);
   }
 
   return (
@@ -86,13 +90,17 @@ function Table({ data, reloader }) {
               {row.cells.map(cell => {
                 return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
               })}
-              <td><button type="submit" name="noteid" value={row.original._id} onClick={editNote}>Edit note</button></td>
+              <td><button type="submit" name="noteid" value={row.original._id} onClick={openPopUpEditor}>Edit note</button></td>
               <td><button type="submit" name="noteid" value={row.original._id} onClick={deleteNote}>Delete note</button></td>
             </tr>
           );
         })}
       </tbody>
     </table>
+      {isShowing
+        ? <EditNoteForm id={noteId} data={note} reloader={reloader} closer={closePopUpEditor}/>
+        : null
+      }
     </div>
   );
 }

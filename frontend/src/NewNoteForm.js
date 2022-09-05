@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-function NoteForm({ reloader }) {
+function NewNoteForm({ reloader }) {
     const [state, setState] = useState({
         description: "",
         tagsRaw: "",
@@ -39,7 +39,7 @@ function NoteForm({ reloader }) {
   
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (!state.description) {
+        if (!(state.description.trim())) {
             alert("Description must be filled!");
             return;
         }
@@ -95,4 +95,4 @@ function NoteForm({ reloader }) {
     );
 }
 
-export default NoteForm;
+export default NewNoteForm;
