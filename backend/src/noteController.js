@@ -10,6 +10,7 @@ exports.index = function (req, res) {
             res.statusCode = 500;
             return res.json(err);
         }
+        console.log(notes);
         return res.json({
             data: notes,
         });

@@ -4,7 +4,6 @@ module.exports.createNewNote = function (dataSource) {
     var note = new Note();
     note.description = dataSource.description.trim();
     note.tags = [];
-    console.log(dataSource.tags);
     if (dataSource.tags) {
         dataSource.tags.map((t) => String(t).trim()).forEach((t) => {
             console.log(t);
