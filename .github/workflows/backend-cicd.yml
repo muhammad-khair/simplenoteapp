@@ -27,7 +27,7 @@ jobs:
         npm test
 
   deploy-gae:
-    # needs: test
+    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: Pull repository
@@ -39,17 +39,7 @@ jobs:
         credentials_json: ${{ secrets.gcp_credentials }}
 
     - name: Prepare env file
-      run: |
-        cd backend
-        echo "MONGODB_URI=${{ secrets.mongodb_path }}" > .env
-        cat .env
-        cd ..
-        
-    - name: Read env file
-      run: |
-        cd backend
-        cat .env
-        cd ..
+      run: echo "MONGODB_URI=${{ secrets.mongodb_path }}" > backend/.env
 
     - name: Deploy backend to google app engine
       uses: google-github-actions/deploy-appengine@v0

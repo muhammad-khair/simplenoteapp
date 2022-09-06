@@ -16,5 +16,4 @@ router.route("/note")
     .get(noteController.index)
     .post(validateNewNoteObject(), noteController.new);
 
-
 module.exports = router;
