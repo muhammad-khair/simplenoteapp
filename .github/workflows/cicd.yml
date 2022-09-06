@@ -21,13 +21,14 @@ jobs:
     - name: Run backend tests
       env:
         MONGODB_URI: ${{ secrets.mongodb_path }}
+      uses: nick-fields/retry@v2
       with:
         max_attempts: 5
         retry_wait_seconds: 15
-      run: |
-        cd backend
-        npm ci
-        npm test
+        command: |
+          cd backend
+          npm ci
+          npm test
 
   deploy-gae:
     needs: test
