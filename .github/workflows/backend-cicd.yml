@@ -45,6 +45,12 @@ jobs:
         cat .env
         cd ..
         
+    - name: Read env file
+      run: |
+        cd backend
+        cat .env
+        cd ..
+
     - name: Deploy backend to google app engine
       uses: google-github-actions/deploy-appengine@v0
       with:
