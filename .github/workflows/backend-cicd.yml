@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Pull repository
-    - uses: actions/checkout@v3
+      uses: actions/checkout@v3
 
     - name: Use Node.js
       uses: actions/setup-node@v3
@@ -26,7 +26,7 @@ jobs:
         mongodb-port: 27017
 
     - name: Run backend tests
-    - run: |
+      run: |
         cd backend
         npm ci
         npm test
@@ -39,7 +39,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Traverse to backend
-      - run: cd backend
+        run: cd backend
 
       - name: Deploy backend to Google App Engine
         uses: google-github-actions/deploy-appengine@main
