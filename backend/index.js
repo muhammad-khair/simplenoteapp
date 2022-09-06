@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(cors());
 
+console.log(process.env);
 console.log(process.env.MONGODB_URI);
 mongoose.connect(
     process.env.MONGODB_URI,
