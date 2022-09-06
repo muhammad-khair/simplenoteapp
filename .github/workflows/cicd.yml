@@ -58,6 +58,7 @@ jobs:
         node-version: '14.x'
 
     - name: Deploy frontend to github pages
+      uses: stefanzweifel/git-auto-commit-action@v4
       run: |
         cd frontend
         npm ci
