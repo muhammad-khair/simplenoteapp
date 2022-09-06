@@ -12,7 +12,9 @@ describe("api/note", () => {
         let id = 0;
         before(() => {
             let note = createNewNote({ description: "Test code" });
-            note.save();
+            note.save((err) =>{
+                console.log(err);
+            });
             id = note._id;
         });
 
@@ -122,7 +124,9 @@ describe("api/note", () => {
         let id = 0;
         before(() => {
             let note = createNewNote({ description: oldDesc });
-            note.save();
+            note.save((err) =>{
+                console.log(err);
+            });
             id = note._id;
         });
 
@@ -190,7 +194,9 @@ describe("api/note", () => {
         let id = 0;
         before(() => {
             let note = createNewNote({ description: "Test code" });
-            note.save();
+            note.save((err) =>{
+                console.log(err);
+            });
             id = note._id;
         });
         
