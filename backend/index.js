@@ -3,6 +3,7 @@ let bodyParser = require("body-parser");
 let cors = require('cors')
 let express = require("express");
 let mongoose = require("mongoose");
+require('dotenv').config();
 
 let app = express();
 app.use(bodyParser.urlencoded({
@@ -12,7 +13,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 mongoose.connect(
-    "mongodb://localhost:27017/simplenoteapp",
+    process.env.MONGODB_URI,
     { useNewUrlParser: true }
 );
 var db = mongoose.connection;
