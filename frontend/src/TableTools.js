@@ -1,9 +1,15 @@
 import React from "react";
 import Moment from 'moment';
+import Badge from 'react-bootstrap/Badge';
 
 export const DataPriority = ({ value }) => {
+    let colour = {
+        "HIGH": "danger",
+        "MEDIUM": "secondary",
+        "LOW": "dark",
+    }[value] || "info";
     return (
-      <span key={`priority-${value}`} className="priority-badge">{value}</span>
+      <Badge bg={colour} key={`priority-${value}`} className="priority-badge">{value}</Badge>
     );
 };
 
@@ -11,9 +17,9 @@ export const DataTag = ({ valueList }) => {
     return (
         <>
         {valueList.map((tag, idx) => (
-            <span key={idx} className="tag-badge">
+            <Badge bg="warning" text="dark" key={idx} className="tag-badge">
             {tag}
-            </span>
+            </Badge>
         ))}
     </>
     );
@@ -21,8 +27,8 @@ export const DataTag = ({ valueList }) => {
 
 export const DataBoolean = ({ value }) => {
     return (value)
-        ? (<><span key="trueBooleanTag" className="boolean-badge">TRUE</span></>)
-        : (<><span key="falseBooleanTag" className="boolean-badge">FALSE</span></>);
+        ? (<><Badge bg="success" key="trueBooleanTag" className="boolean-badge">TRUE</Badge></>)
+        : (<><Badge bg="danger" key="falseBooleanTag" className="boolean-badge">FALSE</Badge></>);
 };
 
 export const DataDate = ({ value }) => {

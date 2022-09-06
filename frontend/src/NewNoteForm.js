@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 function NewNoteForm({ reloader }) {
     const [state, setState] = useState({
@@ -50,7 +52,6 @@ function NewNoteForm({ reloader }) {
             is_flagged: state.is_flagged,
         })
         .then((response) => {
-            alert('Added note!');
             reloader();
         });
 
@@ -64,34 +65,30 @@ function NewNoteForm({ reloader }) {
     }
 
     return (
-        <div>
+        <Form className="square border border-primary m-auto align-self-center p-3 mb-2 bg-light text-dark" style={{ width: '30rem' }}>
             <h2>New Note</h2>
-            <form onSubmit={handleSubmit}>
-            <div>
-                Description: 
+            <Form.Group className="mb-3" >
+            <Form.Label>Description:</Form.Label><br/>
                 <input type="text" name="description" value={state.description} onChange={handleChange}/>
-            </div>
-            <div>
-                Flag it? 
+            </Form.Group>
+            <Form.Group className="mb-3" >
+            <Form.Label className="me-2">Flag it?</Form.Label>
                 <input type="checkbox" name="is_flagged" checked={state.is_flagged} onChange={handleChange}/>
-            </div>
-            <div>
-                Tags: 
+            </Form.Group>
+            <Form.Group className="mb-3" >
+            <Form.Label>Tags:</Form.Label><br/>
                 <input type="text" name="tagsRaw" value={state.tagsRaw} onChange={handleChange}/>
-            </div>
-            <div>
-                <label>
-                    Priority: 
+            </Form.Group>
+            <Form.Group className="mb-3" >
+                <Form.Label className="me-2">Priority:</Form.Label>
                     <select name="priority" value={state.priority} onChange={handleChange}>
                         <option value="LOW">LOW</option>
                         <option value="MEDIUM">MEDIUM</option>
                         <option value="HIGH">HIGH</option>
                     </select>
-                </label>
-            </div>
-            <input type="submit" value="Submit" />
-            </form>
-        </div>
+            </Form.Group>
+            <Button variant="primary" type="submit" value="Submit" onClick={handleSubmit}>Submit</Button>
+        </Form>
     );
 }
 

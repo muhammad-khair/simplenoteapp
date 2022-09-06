@@ -3,8 +3,10 @@ import { useTable } from "react-table";
 import axios from "axios";
 import EditNoteForm from "./EditNoteForm";
 import React, { useEffect, useState, useMemo } from "react";
+import { Button } from 'react-bootstrap';
+import Table from 'react-bootstrap/Table';
 
-function Table({ data, reloader }) {
+function NoteTable({ data, reloader }) {
   const [isShowing, setIsShowing] = useState(false);
   const [noteId, setNoteId] = useState(null);
   const [note, setNote] = useState(null);
@@ -70,9 +72,10 @@ function Table({ data, reloader }) {
   }
 
   return (
-    <div>
+    <div className="p-3 mb-2 bg-light text-dark">
     <h2>Current Notes</h2>
-    <table {...getTableProps()}>
+    <br/>
+    <Table striped hover variant="light" responsive="sm" {...getTableProps()}>
       <thead>
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()}>
@@ -90,13 +93,13 @@ function Table({ data, reloader }) {
               {row.cells.map(cell => {
                 return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
               })}
-              <td><button type="submit" name="noteid" value={row.original._id} onClick={openPopUpEditor}>Edit note</button></td>
-              <td><button type="submit" name="noteid" value={row.original._id} onClick={deleteNote}>Delete note</button></td>
+              <td><Button variant="secondary" type="submit" name="noteid" value={row.original._id} onClick={openPopUpEditor}>Edit note</Button></td>
+              <td><Button variant="danger" type="submit" name="noteid" value={row.original._id} onClick={deleteNote}>Delete note</Button></td>
             </tr>
           );
         })}
       </tbody>
-    </table>
+    </Table>
       {isShowing
         ? <EditNoteForm id={noteId} data={note} reloader={reloader} closer={closePopUpEditor}/>
         : null
@@ -105,4 +108,4 @@ function Table({ data, reloader }) {
   );
 }
 
-export default Table;
+export default NoteTable;

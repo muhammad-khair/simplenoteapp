@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Card from 'react-bootstrap/Card';
 
 function RandomTrivia() {
     const [trivia, setTrivia] = useState("TODO: add serverless data here");
@@ -6,10 +7,16 @@ function RandomTrivia() {
     // TODO: pull serverless information to this placeholder
 
     return (
-        <div>
-            <h2>Trivia for the day!</h2>
-            <h3>"{trivia}"</h3>
-        </div>
+        <Card className="m-auto align-self-center p-3 mb-2 bg-secondary text-white" style={{ width: '18rem' }}>
+            <Card.Body>
+                <Card.Title>
+                    Trivia for the day!
+                </Card.Title>
+                <Card.Text>
+                    "{trivia}"
+                </Card.Text>
+            </Card.Body>
+        </Card>
     )
 }
 

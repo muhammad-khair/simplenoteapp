@@ -24,6 +24,7 @@ html, body, .app {
 }
 
 .popup_inner {
+    border-radius: 25px;
     position: absolute;
     left: 25%;
     right: 25%;
