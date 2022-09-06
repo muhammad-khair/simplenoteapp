@@ -18,18 +18,11 @@ jobs:
       with:
         node-version: '14.x'
 
-    # - name: Prepare env file
-    #   run: |
-    #     cd backend
-    #     echo ${{ secrets.mongodb_path }} > .env
-    #     cat .env
-    #     cd ..
-
     - name: Run backend tests
+      env:
+        MONGODB_URI: ${{ secrets.mongodb_path }}
       run: |
         cd backend
-        echo ${{ secrets.mongodb_path }} > .env
-        cat .env
         npm ci
         npm test
 
@@ -48,7 +41,7 @@ jobs:
     - name: Prepare env file
       run: |
         cd backend
-        echo ${{ secrets.mongodb_path }} > .env
+        echo "MONGODB_URI=${{ secrets.mongodb_path }}" > .env
         cat .env
         cd ..
         
