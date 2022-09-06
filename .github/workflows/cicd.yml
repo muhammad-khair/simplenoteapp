@@ -24,10 +24,10 @@ jobs:
       with:
         max_attempts: 5
         retry_wait_seconds: 15
-        run: |
-          cd backend
-          npm ci
-          npm test
+      run: |
+        cd backend
+        npm ci
+        npm test
 
   deploy-gae:
     needs: test
