@@ -1,0 +1,47 @@
+# .github/workflows/backend-cicd.yaml
+
+name: Run CICD on backend
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Pull repository
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14.x'
+
+    - name: Use MongoDB
+      uses: supercharge/mongodb-github-action@1.8.0
+      with:
+        mongodb-version: '6.0'
+        mongodb-replica-set: simplenoteapp
+        mongodb-port: 27017
+
+    - name: Run backend tests
+    - run: |
+        cd backend
+        npm ci
+        npm test
+        cd ..
+
+  deploy-gae:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull repository
+        uses: actions/checkout@v3
+
+      - name: Traverse to backend
+      - run: cd backend
+
+      - name: Deploy backend to Google App Engine
+        uses: google-github-actions/deploy-appengine@main
+        with:
+          credentials: ${{ secrets.gcp_credentials }}
