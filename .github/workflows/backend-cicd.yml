@@ -28,7 +28,6 @@ jobs:
         cd backend
         npm ci
         npm test
-        cd ..
 
   deploy-gae:
     needs: test
