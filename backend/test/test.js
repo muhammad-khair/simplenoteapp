@@ -9,6 +9,13 @@ chai.should();
 
 describe("api/note", () => {
     describe("GET", () => {
+        let id = 0;
+        before(() => {
+            let note = createNewNote({ description: "Test code" });
+            note.save();
+            id = note._id;
+        });
+
         it("should get all notes", (done) => {
             chai.request(app)
                 .get("/api/note")
@@ -21,9 +28,6 @@ describe("api/note", () => {
                 });
         });
 
-        let note = createNewNote({ description: "Test code" });
-        note.save();
-        let id = note._id;
         it("should be able to view specific note", (done) => {
             chai.request(app)
                 .get(`/api/note/${id}`)
@@ -115,9 +119,13 @@ describe("api/note", () => {
     describe("PUT", () => {
         let oldDesc = "Test code";
         let newDesc = "Delete code";
-        let note = createNewNote({ description: oldDesc });
-        note.save();
-        let id = note._id;
+        let id = 0;
+        before(() => {
+            let note = createNewNote({ description: oldDesc });
+            note.save();
+            id = note._id;
+        });
+
         it("should be able to update note with correct format", (done) => {
             let note = {
                 description: newDesc,
@@ -179,9 +187,13 @@ describe("api/note", () => {
     });    
 
     describe("DELETE", () => {
-        let note = createNewNote({ description: "to delete" });
-        note.save();
-        let id = note._id;
+        let id = 0;
+        before(() => {
+            let note = createNewNote({ description: "Test code" });
+            note.save();
+            id = note._id;
+        });
+        
         it("should be able to remove note", (done) => {
             chai.request(app)
                 .delete(`/api/note/${id}`)
