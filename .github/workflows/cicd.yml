@@ -23,6 +23,7 @@ jobs:
         MONGODB_URI: ${{ secrets.mongodb_path }}
       uses: nick-fields/retry@v2
       with:
+        timeout_minutes: 5
         max_attempts: 5
         retry_wait_seconds: 15
         command: |
