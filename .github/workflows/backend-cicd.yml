@@ -20,9 +20,10 @@ jobs:
 
     - name: Prepare env file
       run: |
-        touch backend/.env
-        echo ${{ secrets.mongodb_path }} > backend/.env
-        cat backend/.env
+        cd backend
+        echo ${{ secrets.mongodb_path }} > .env
+        cat .env
+        cd ..
 
     - name: Run backend tests
       run: |
@@ -44,8 +45,10 @@ jobs:
 
     - name: Prepare env file
       run: |
-        touch backend/.env
-        echo ${{ secrets.mongodb_path }} > backend/.env
+        cd backend
+        echo ${{ secrets.mongodb_path }} > .env
+        cat .env
+        cd ..
         
     - name: Deploy backend to google app engine
       uses: google-github-actions/deploy-appengine@v0
