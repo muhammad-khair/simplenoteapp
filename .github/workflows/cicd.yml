@@ -1,6 +1,6 @@
-# .github/workflows/backend-cicd.yaml
+# .github/workflows/cicd.yaml
 
-name: Run CICD on backend
+name: Run CICD
 on:
   push:
     branches:
@@ -21,10 +21,13 @@ jobs:
     - name: Run backend tests
       env:
         MONGODB_URI: ${{ secrets.mongodb_path }}
-      run: |
-        cd backend
-        npm ci
-        npm test
+      with:
+        max_attempts: 5
+        retry_wait_seconds: 15
+        run: |
+          cd backend
+          npm ci
+          npm test
 
   deploy-gae:
     needs: test
@@ -46,4 +49,14 @@ jobs:
       with:
         working_directory: backend
         deliverables: app.yaml
-        # promote: false
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14.x'
+
+    - name: Deploy frontend to github pages
+      run: |
+        cd frontend
+        npm ci
+        npm run deploy
