@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import NoteTable from "./NoteTable";
 import NewNoteForm from "./NewNoteForm";
 import RandomTrivia from "./RandomTrivia";
-import BASE_URL from './BaseUrl';
+import { BASE_URL } from './UrlPaths';
 
 function App() {
   	const [data, setData] = useState([]);

@@ -5,7 +5,7 @@ import EditNoteForm from "./EditNoteForm";
 import React, { useEffect, useState, useMemo } from "react";
 import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
-import BASE_URL from './BaseUrl';
+import { BASE_URL } from './UrlPaths';
 
 function NoteTable({ data, reloader }) {
   const [isShowing, setIsShowing] = useState(false);

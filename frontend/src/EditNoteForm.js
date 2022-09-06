@@ -2,7 +2,7 @@ import './EditNoteForm.css';
 import axios from "axios";
 import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
-import BASE_URL from './BaseUrl';
+import { BASE_URL } from './UrlPaths';
 import { Button } from 'react-bootstrap';
 
 function EditNoteForm({id, data, reloader, closer}) {

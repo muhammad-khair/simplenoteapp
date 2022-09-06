@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import BASE_URL from './BaseUrl';
+import { BASE_URL } from './UrlPaths';
 
 function NewNoteForm({ reloader }) {
     const [state, setState] = useState({

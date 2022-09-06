@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Card from 'react-bootstrap/Card';
+import { SERVERLESS_URL } from './UrlPaths';
 
 function RandomTrivia() {
     const [trivia, setTrivia] = useState("TODO: add serverless data here");
