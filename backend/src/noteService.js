@@ -13,10 +13,10 @@ module.exports.createNewNote = function (dataSource) {
             }
         });
     }
-    note.priority = (dataSource.priority)
+    note.priority = (dataSource.priority !== undefined)
         ? dataSource.priority.trim()
         : "LOW";
-    note.is_flagged = (dataSource.is_flagged)
+    note.is_flagged = (dataSource.is_flagged !== undefined)
         ? dataSource.is_flagged
         : false;
     return note;
@@ -34,13 +34,13 @@ module.exports.updateNote = function (note, dataSource) {
             }
         });
     }
-    note.priority = (dataSource.priority)
+    note.priority = (dataSource.priority !== undefined)
         ? dataSource.priority.trim()
         : note.priority;
-    note.is_flagged = (dataSource.is_flagged)
+    note.is_flagged = (dataSource.is_flagged !== undefined)
         ? dataSource.is_flagged
         : note.is_flagged;
-    note.is_completed = (dataSource.is_completed)
+    note.is_completed = (dataSource.is_completed !== undefined)
         ? dataSource.is_completed
         : note.is_completed;
 };
