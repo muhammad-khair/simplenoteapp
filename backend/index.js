@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 
 app.get("/", (req, res) => {
     console.log("/ path called");
-    res.send("Hello World" + process.env.MONGODB_URI);
+    return res.send(`Hello World ${process.env}`);
 });
 app.use("/api", apiRoutes);
 

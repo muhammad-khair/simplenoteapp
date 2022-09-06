@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import BASE_URL from './BaseUrl';
 
 function NewNoteForm({ reloader }) {
     const [state, setState] = useState({
@@ -45,7 +46,7 @@ function NewNoteForm({ reloader }) {
             alert("Description must be filled!");
             return;
         }
-        axios.post("http://localhost:8080/api/note", {
+        axios.post(BASE_URL, {
             description: state.description,
             tags: state.tags,
             priority: state.priority,

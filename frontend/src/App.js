@@ -5,13 +5,13 @@ import React, { useState } from "react";
 import NoteTable from "./NoteTable";
 import NewNoteForm from "./NewNoteForm";
 import RandomTrivia from "./RandomTrivia";
+import BASE_URL from './BaseUrl';
 
 function App() {
   	const [data, setData] = useState([]);
 
   	const loadData = () => {
-		let dataUrl = "http://localhost:8080/api/note";
-		axios.get(dataUrl)
+		axios.get(BASE_URL)
 			.then((res) => {
 				setData(res.data.data);
 			});

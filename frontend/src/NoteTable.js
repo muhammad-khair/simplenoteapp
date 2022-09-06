@@ -5,6 +5,7 @@ import EditNoteForm from "./EditNoteForm";
 import React, { useEffect, useState, useMemo } from "react";
 import { Button } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
+import BASE_URL from './BaseUrl';
 
 function NoteTable({ data, reloader }) {
   const [isShowing, setIsShowing] = useState(false);
@@ -51,8 +52,7 @@ function NoteTable({ data, reloader }) {
   useEffect(() => reloader(), []);
 
   const deleteNote = (event) => {
-		let dataUrl = "http://localhost:8080/api/note";
-    axios.delete(`${dataUrl}/${event.target.value}`)
+    axios.delete(`${BASE_URL}/${event.target.value}`)
 			.then((res) => {
         alert("Note deleted!");
         reloader();

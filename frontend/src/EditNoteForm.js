@@ -2,6 +2,7 @@ import './EditNoteForm.css';
 import axios from "axios";
 import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
+import BASE_URL from './BaseUrl';
 import { Button } from 'react-bootstrap';
 
 function EditNoteForm({id, data, reloader, closer}) {
@@ -49,7 +50,6 @@ function EditNoteForm({id, data, reloader, closer}) {
             return;
         }
 
-		let dataUrl = "http://localhost:8080/api/note";
         let data = {
             description: note.description,
             tags: note.tags,
@@ -58,7 +58,7 @@ function EditNoteForm({id, data, reloader, closer}) {
             is_completed: note.is_completed
         };
         console.log(data);
-        axios.put(`${dataUrl}/${id}`, data)
+        axios.put(`${BASE_URL}/${id}`, data)
 			.then((res) => {
                 reloader();
                 closer();
