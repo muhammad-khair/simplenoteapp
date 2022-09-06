@@ -62,3 +62,5 @@ jobs:
         cd frontend
         npm ci
         npm run deploy
+      env:
+        CI: false
