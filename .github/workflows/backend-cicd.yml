@@ -27,7 +27,7 @@ jobs:
         npm test
 
   deploy-gae:
-    needs: test
+    # needs: test
     runs-on: ubuntu-latest
     steps:
     - name: Pull repository
