@@ -4,8 +4,11 @@ import axios from "axios";
 import React, { useState } from "react";
 import NoteTable from "./NoteTable";
 import NewNoteForm from "./NewNoteForm";
-import RandomTrivia from "./RandomTrivia";
+import ServerlessRates from "./ServerlessRates";
 import { BASE_URL } from './UrlPaths';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function App() {
   	const [data, setData] = useState([]);
@@ -19,12 +22,22 @@ function App() {
 
 	return (
 		<div className="App">
-			<div>
-				<br/><h1>Welcome to simplenoteapp!</h1>
-			</div>
-			<br/><div><RandomTrivia/></div>
-			<br/><div><NewNoteForm reloader={loadData}/></div>
-			<br/><div><NoteTable data={data} reloader={loadData}/></div>
+			<Container>
+				<br/>
+				<Row>
+					<Col><h1>Welcome to simplenoteapp!</h1></Col>
+				</Row>
+				<br/>
+				<Row>
+					<Col><NewNoteForm reloader={loadData}/></Col>
+					<Col><ServerlessRates/></Col>
+				</Row>
+				<br/>
+				<Row>
+					<Col><NoteTable data={data} reloader={loadData}/></Col>
+				</Row>
+				<br/>
+			</Container>
 		</div>
 	);
 }
