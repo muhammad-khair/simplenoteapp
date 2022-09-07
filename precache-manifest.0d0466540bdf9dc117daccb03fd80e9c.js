@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "1c5c350bf3b4b81c83dd",
-    "url": "/simplenoteapp/static/css/main.3be78d8c.chunk.css"
+    "revision": "b28da793c0ffb6984fa8",
+    "url": "/simplenoteapp/static/css/main.626de12c.chunk.css"
   },
   {
-    "revision": "1c5c350bf3b4b81c83dd",
-    "url": "/simplenoteapp/static/js/main.1c5c350b.chunk.js"
+    "revision": "b28da793c0ffb6984fa8",
+    "url": "/simplenoteapp/static/js/main.b28da793.chunk.js"
   },
   {
     "revision": "fbd0924dd8ee322e9bc2",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/simplenoteapp/static/js/runtime~main.10e25aa5.js"
   },
   {
-    "revision": "c140066aca599828da549ddb34b4a515",
+    "revision": "8694ab956a707a3407732537d571b4f1",
     "url": "/simplenoteapp/index.html"
   }
 ];

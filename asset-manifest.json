@@ -1,7 +1,7 @@
 {
-  "main.css": "/simplenoteapp/static/css/main.3be78d8c.chunk.css",
-  "main.js": "/simplenoteapp/static/js/main.1c5c350b.chunk.js",
-  "main.js.map": "/simplenoteapp/static/js/main.1c5c350b.chunk.js.map",
+  "main.css": "/simplenoteapp/static/css/main.626de12c.chunk.css",
+  "main.js": "/simplenoteapp/static/js/main.b28da793.chunk.js",
+  "main.js.map": "/simplenoteapp/static/js/main.b28da793.chunk.js.map",
   "static/js/1.fbd0924d.chunk.js": "/simplenoteapp/static/js/1.fbd0924d.chunk.js",
   "static/js/1.fbd0924d.chunk.js.map": "/simplenoteapp/static/js/1.fbd0924d.chunk.js.map",
   "static/css/2.3c5ae266.chunk.css": "/simplenoteapp/static/css/2.3c5ae266.chunk.css",
@@ -9,9 +9,9 @@
   "static/js/2.06635d61.chunk.js.map": "/simplenoteapp/static/js/2.06635d61.chunk.js.map",
   "runtime~main.js": "/simplenoteapp/static/js/runtime~main.10e25aa5.js",
   "runtime~main.js.map": "/simplenoteapp/static/js/runtime~main.10e25aa5.js.map",
-  "static/css/main.3be78d8c.chunk.css.map": "/simplenoteapp/static/css/main.3be78d8c.chunk.css.map",
+  "static/css/main.626de12c.chunk.css.map": "/simplenoteapp/static/css/main.626de12c.chunk.css.map",
   "static/css/2.3c5ae266.chunk.css.map": "/simplenoteapp/static/css/2.3c5ae266.chunk.css.map",
   "index.html": "/simplenoteapp/index.html",
-  "precache-manifest.e4c520f3552942d4f56669a4feac27ac.js": "/simplenoteapp/precache-manifest.e4c520f3552942d4f56669a4feac27ac.js",
+  "precache-manifest.0d0466540bdf9dc117daccb03fd80e9c.js": "/simplenoteapp/precache-manifest.0d0466540bdf9dc117daccb03fd80e9c.js",
   "service-worker.js": "/simplenoteapp/service-worker.js"
 }
