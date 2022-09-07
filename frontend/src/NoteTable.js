@@ -54,7 +54,6 @@ function NoteTable({ data, reloader }) {
   const deleteNote = (event) => {
     axios.delete(`${BASE_URL}/${event.target.value}`)
 			.then((res) => {
-        alert("Note deleted!");
         reloader();
 			});
   }

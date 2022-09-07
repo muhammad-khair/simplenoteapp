@@ -15,7 +15,7 @@ function App() {
 			.then((res) => {
 				setData(res.data.data);
 			});
-  	}
+  	};
 
 	return (
 		<div className="App">

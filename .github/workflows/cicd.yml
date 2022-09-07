@@ -24,14 +24,14 @@ jobs:
       uses: nick-fields/retry@v2
       with:
         timeout_minutes: 5
-        max_attempts: 5
+        max_attempts: 10
         retry_wait_seconds: 15
         command: |
           cd backend
           npm ci
           npm test
 
-  deploy-gae:
+  deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -51,6 +51,13 @@ jobs:
       with:
         working_directory: backend
         deliverables: app.yaml
+
+    - name: Deploy serverless to google cloud function
+      uses: google-github-actions/deploy-cloud-functions@v0
+      with:
+        name: simplenoteserverless
+        runtime: nodejs14
+        source_dir: serverless
     
     - name: Use Node.js
       uses: actions/setup-node@v3

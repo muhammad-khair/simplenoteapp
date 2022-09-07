@@ -1,7 +1,6 @@
 {
-  "name": "simplenoteapp",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "Just a simple note taking application.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
