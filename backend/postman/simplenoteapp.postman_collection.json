@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "7f8a5047-4082-411d-8c21-bc361cda6a37",
+		"name": "simplenoteapp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12872110"
+	},
+	"item": [
+		{
+			"name": "/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{deployedhost}}",
+					"host": [
+						"{{deployedhost}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{deployedhost}}/api",
+					"host": [
+						"{{deployedhost}}"
+					],
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/note",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{deployedhost}}/api/note",
+					"host": [
+						"{{deployedhost}}"
+					],
+					"path": [
+						"api",
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/note",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"new note\",\r\n    \"tags\": [\r\n        \"something-important\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{deployedhost}}/api/note",
+					"host": [
+						"{{deployedhost}}"
+					],
+					"path": [
+						"api",
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/note/:note_id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{deployedhost}}/api/note/630b4a075c13ff4a02524434",
+					"host": [
+						"{{deployedhost}}"
+					],
+					"path": [
+						"api",
+						"note",
+						"630b4a075c13ff4a02524434"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/note/:note_id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Random\",\r\n    \"tags\": [],\r\n    \"priority\": \"LOW\",\r\n    \"is_flagged\": false,\r\n    \"is_completed\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{deployedhost}}/api/note/630b5122bc2d437353231ae2",
+					"host": [
+						"{{deployedhost}}"
+					],
+					"path": [
+						"api",
+						"note",
+						"630b5122bc2d437353231ae2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/note/:note_id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{deployedhost}}/api/note/6315b81d6720f4b1fbde1860",
+					"host": [
+						"{{deployedhost}}"
+					],
+					"path": [
+						"api",
+						"note",
+						"6315b81d6720f4b1fbde1860"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "port",
+			"value": "8080",
+			"type": "string"
+		},
+		{
+			"key": "local",
+			"value": "http://localhost",
+			"type": "string"
+		},
+		{
+			"key": "localhost",
+			"value": "{{local}}:{{port}}",
+			"type": "string"
+		},
+		{
+			"key": "deployedhost",
+			"value": "https://fast-lattice-361717.as.r.appspot.com",
+			"type": "string"
+		}
+	]
+}
