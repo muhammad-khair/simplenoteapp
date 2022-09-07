@@ -17,7 +17,7 @@ export const DataTag = ({ valueList }) => {
     return (
         <>
         {valueList.map((tag, idx) => (
-            <Badge bg="warning" text="dark" key={idx} className="tag-badge">
+            <Badge style={{ maxWidth: 100 }} bg="warning" text="dark" key={idx} className="tag-badge text-wrap">
             {tag}
             </Badge>
         ))}

@@ -16,7 +16,11 @@ function NoteTable({ data, reloader }) {
     [
       {
           Header: "description",
-          accessor: "description"
+          accessor: "description",
+          maxWidth: 250,
+          width: 150,
+          Cell: ({ cell: { value } }) => 
+            <span style={{ maxWidth: 200, 'overflow-wrap': 'break-word' }}>{value}</span>
       },
       {
           Header: "priority",
@@ -26,6 +30,8 @@ function NoteTable({ data, reloader }) {
       {
           Header: "tags",
           accessor: "tags",
+          maxWidth: 150,
+          width: 100,
           Cell: ({ cell: { value } }) => <DataTag valueList={value} />
       },
       {
@@ -74,12 +80,14 @@ function NoteTable({ data, reloader }) {
     <div className="p-3 mb-2 bg-light text-dark">
     <h2>Current Notes</h2>
     <br/>
-    <Table striped hover variant="light" responsive="sm" {...getTableProps()}>
+    <Table style={{ overflow: "auto" }} striped hover variant="light" responsive="sm" {...getTableProps()}>
       <thead>
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+              <th {...column.getHeaderProps({
+                style: { maxWidth: column.maxWidth, width: column.width }
+              })}>{column.render("Header")}</th>
             ))}
           </tr>
         ))}
@@ -90,7 +98,9 @@ function NoteTable({ data, reloader }) {
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                return <td {...cell.getCellProps({
+                  style: { maxWidth: cell.column.maxWidth, width: cell.column.width }
+                })}>{cell.render("Cell")}</td>;
               })}
               <td><Button variant="secondary" type="submit" name="noteid" value={row.original._id} onClick={openPopUpEditor}>Edit note</Button></td>
               <td><Button variant="danger" type="submit" name="noteid" value={row.original._id} onClick={deleteNote}>Delete note</Button></td>

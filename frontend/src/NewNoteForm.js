@@ -66,11 +66,11 @@ function NewNoteForm({ reloader }) {
     }
 
     return (
-        <Form className="square border border-primary m-auto align-self-center p-3 mb-2 bg-light text-dark" style={{ width: '30rem' }}>
+        <Form className="square border border-primary m-auto align-self-center p-3 mb-2 bg-light text-dark" style={{ width: '25rem' }}>
             <h2>New Note</h2>
             <Form.Group className="mb-3" >
             <Form.Label>Description:</Form.Label><br/>
-                <input type="text" name="description" value={state.description} onChange={handleChange}/>
+                <input placeholder="description here (must)" type="text" maxlength="100" name="description" value={state.description} onChange={handleChange}/>
             </Form.Group>
             <Form.Group className="mb-3" >
             <Form.Label className="me-2">Flag it?</Form.Label>
@@ -78,7 +78,7 @@ function NewNoteForm({ reloader }) {
             </Form.Group>
             <Form.Group className="mb-3" >
             <Form.Label>Tags:</Form.Label><br/>
-                <input type="text" name="tagsRaw" value={state.tagsRaw} onChange={handleChange}/>
+                <input placeholder="space/comma split words" type="text" maxlength="100" name="tagsRaw" value={state.tagsRaw} onChange={handleChange}/>
             </Form.Group>
             <Form.Group className="mb-3" >
                 <Form.Label className="me-2">Priority:</Form.Label>
