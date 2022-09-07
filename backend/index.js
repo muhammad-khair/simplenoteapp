@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 
 app.get("/", (req, res) => {
     console.log("/ path called");
-    return res.send(`Hello World ${process.env}`);
+    return res.send("Hello World");
 });
 app.use("/api", apiRoutes);
 
